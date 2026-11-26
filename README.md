@@ -1,12 +1,119 @@
 # Leetcode-
 
-My solutions to LeetCode (including 30 Hard problems) and classic DSA problems in Python. Every file runs its own tests:
+105 solutions in Python: LeetCode problems grouped by topic, 30 LeetCode Hard problems, and classic DSA problems. Every file runs its own tests:
 
 ```bash
 python3 leetcode/lc0033_search_rotated_sorted_array.py
 ```
 
-## LeetCode
+## LeetCode by topic
+
+### Arrays & Hashing (12)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 36 | [Valid Sudoku](arrays/lc0036_valid_sudoku.py) | Medium | One pass with sets for each row, column and 3x3 box |
+| 48 | [Rotate Image](arrays/lc0048_rotate_image.py) | Medium | Transpose the matrix, then reverse each row. That is a 90 degree clockwise rotation, in place |
+| 54 | [Spiral Matrix](arrays/lc0054_spiral_matrix.py) | Medium | Walk the outer layer with four boundaries (top, bottom, left, right) and shrink them after each side |
+| 73 | [Set Matrix Zeroes](arrays/lc0073_set_matrix_zeroes.py) | Medium | First record which rows and columns hold a zero, then clear them in a second pass |
+| 128 | [Longest Consecutive Sequence](arrays/lc0128_longest_consecutive_sequence.py) | Medium | Put numbers in a set and only start counting at x when x - 1 is missing (the start of a run) |
+| 169 | [Majority Element](arrays/lc0169_majority_element.py) | Easy | Boyer-Moore voting. The majority survives every pairwise cancellation |
+| 189 | [Rotate Array](arrays/lc0189_rotate_array.py) | Medium | Reverse the whole array, then reverse the first k and the rest |
+| 217 | [Contains Duplicate](arrays/lc0217_contains_duplicate.py) | Easy | A set drops repeats, so a duplicate exists when the set is smaller than the list |
+| 238 | [Product of Array Except Self](arrays/lc0238_product_of_array_except_self.py) | Medium | Prefix products from the left, then multiply by suffix products from the right, no division |
+| 242 | [Valid Anagram](arrays/lc0242_valid_anagram.py) | Easy | Two strings are anagrams when every character appears the same number of times |
+| 347 | [Top K Frequent Elements](arrays/lc0347_top_k_frequent_elements.py) | Medium | Bucket sort by frequency |
+| 448 | [Find All Numbers Disappeared in an Array](arrays/lc0448_find_all_numbers_disappeared_in_an_array.py) | Easy | For every value v, mark index v-1 by making it negative |
+
+### Two Pointers (6)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 11 | [Container With Most Water](two_pointers/lc0011_container_with_most_water.py) | Medium | Two pointers at both ends |
+| 15 | [3Sum](two_pointers/lc0015_3sum.py) | Medium | Sort, fix one number, then two pointers on the rest |
+| 75 | [Sort Colors](two_pointers/lc0075_sort_colors.py) | Medium | Dutch national flag. Three pointers keep 0s on the left, 2s on the right, 1s in the middle |
+| 125 | [Valid Palindrome](two_pointers/lc0125_valid_palindrome.py) | Easy | Two pointers from both ends, skipping anything that is not a letter or digit |
+| 167 | [Two Sum II - Input Array Is Sorted](two_pointers/lc0167_two_sum_ii_input_array_is_sorted.py) | Medium | Two pointers. If the sum is too small move left up, if too big move right down |
+| 283 | [Move Zeroes](two_pointers/lc0283_move_zeroes.py) | Easy | A write pointer swaps every non-zero forward, so zeros drift to the end in place |
+
+### Sliding Window (4)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 121 | [Best Time to Buy and Sell Stock](sliding_window/lc0121_best_time_to_buy_and_sell_stock.py) | Easy | Keep the lowest price seen so far |
+| 424 | [Longest Repeating Character Replacement](sliding_window/lc0424_longest_repeating_character_replacement.py) | Medium | Sliding window. A window is fine while (length - count of its most common letter) <= k |
+| 438 | [Find All Anagrams in a String](sliding_window/lc0438_find_all_anagrams_in_a_string.py) | Medium | Fixed-size sliding window of letter counts |
+| 567 | [Permutation in String](sliding_window/lc0567_permutation_in_string.py) | Medium | Slide a window of len(s1) over s2 and compare letter counts |
+
+### Stack (5)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 22 | [Generate Parentheses](stack/lc0022_generate_parentheses.py) | Medium | Backtracking. Add '(' while some are left, and ')' only when it would not close more than opened |
+| 150 | [Evaluate Reverse Polish Notation](stack/lc0150_evaluate_reverse_polish_notation.py) | Medium | Push numbers on a stack |
+| 155 | [Min Stack](stack/lc0155_min_stack.py) | Medium | Store (value, minimum so far) pairs so getMin is the top pair's second item |
+| 739 | [Daily Temperatures](stack/lc0739_daily_temperatures.py) | Medium | Monotonic decreasing stack of indices |
+| 853 | [Car Fleet](stack/lc0853_car_fleet.py) | Medium | Go from the car nearest the target backwards |
+
+### Binary Search (5)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 34 | [Find First and Last Position of Element in Sorted Array](binary_search/lc0034_find_first_and_last_position_of_element_in_sorted_array.py) | Medium | Two binary searches: the first index >= target, and the first index > target |
+| 74 | [Search a 2D Matrix](binary_search/lc0074_search_a_2d_matrix.py) | Medium | The rows join into one sorted list, so binary search index i as cell (i // cols, i % cols) |
+| 153 | [Find Minimum in Rotated Sorted Array](binary_search/lc0153_find_minimum_in_rotated_sorted_array.py) | Medium | Binary search against the right end |
+| 875 | [Koko Eating Bananas](binary_search/lc0875_koko_eating_bananas.py) | Medium | Binary search on the eating speed k |
+| 981 | [Time Based Key-Value Store](binary_search/lc0981_time_based_key_value_store.py) | Medium | Per key, keep timestamps (always increasing) and values in lists |
+
+### Linked List (6)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 2 | [Add Two Numbers](linked_list/lc0002_add_two_numbers.py) | Medium | Add digit by digit like on paper, carrying into the next node |
+| 19 | [Remove Nth Node From End of List](linked_list/lc0019_remove_nth_node_from_end_of_list.py) | Medium | Move a fast pointer n steps ahead, then move both |
+| 21 | [Merge Two Sorted Lists](linked_list/lc0021_merge_two_sorted_lists.py) | Easy | Walk both lists with a dummy head, always attaching the smaller node |
+| 141 | [Linked List Cycle](linked_list/lc0141_linked_list_cycle.py) | Easy | Floyd's tortoise and hare. A fast pointer catches the slow one only if there is a loop |
+| 143 | [Reorder List](linked_list/lc0143_reorder_list.py) | Medium | Find the middle, reverse the second half, then weave the two halves together |
+| 146 | [LRU Cache](linked_list/lc0146_lru_cache.py) | Medium | An OrderedDict keeps keys in use order |
+
+### Trees (12)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 98 | [Validate Binary Search Tree](trees/lc0098_validate_binary_search_tree.py) | Medium | Pass down the allowed (low, high) range |
+| 100 | [Same Tree](trees/lc0100_same_tree.py) | Easy | Two trees match if the roots match and both pairs of subtrees match |
+| 102 | [Binary Tree Level Order Traversal](trees/lc0102_binary_tree_level_order_traversal.py) | Medium | BFS with a queue, handling one whole level per loop |
+| 104 | [Maximum Depth of Binary Tree](trees/lc0104_maximum_depth_of_binary_tree.py) | Easy | Depth of a node is 1 + the deeper of its two subtrees |
+| 105 | [Construct Binary Tree from Preorder and Inorder Traversal](trees/lc0105_construct_binary_tree_from_preorder_and_inorder_traversal.py) | Medium | The next preorder value is the root |
+| 110 | [Balanced Binary Tree](trees/lc0110_balanced_binary_tree.py) | Easy | DFS returns the height, or -1 as soon as any subtree is unbalanced |
+| 199 | [Binary Tree Right Side View](trees/lc0199_binary_tree_right_side_view.py) | Medium | BFS level by level and keep the last node of each level |
+| 226 | [Invert Binary Tree](trees/lc0226_invert_binary_tree.py) | Easy | Swap the left and right child of every node, recursively |
+| 230 | [Kth Smallest Element in a BST](trees/lc0230_kth_smallest_element_in_a_bst.py) | Medium | In-order traversal of a BST visits values in sorted order |
+| 235 | [Lowest Common Ancestor of a Binary Search Tree](trees/lc0235_lowest_common_ancestor_of_a_binary_search_tree.py) | Medium | Walk down from the root |
+| 543 | [Diameter of Binary Tree](trees/lc0543_diameter_of_binary_tree.py) | Easy | DFS returns each height |
+| 572 | [Subtree of Another Tree](trees/lc0572_subtree_of_another_tree.py) | Easy | At every node of root, check whether the tree starting there is the same as subRoot |
+
+### Graphs (5)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 133 | [Clone Graph](graphs/lc0133_clone_graph.py) | Medium | DFS with a map from each original node to its copy, so cycles are copied once |
+| 207 | [Course Schedule](graphs/lc0207_course_schedule.py) | Medium | Kahn's topological sort. If every course can be taken once its prerequisites are done, there is no cycle |
+| 210 | [Course Schedule II](graphs/lc0210_course_schedule_ii.py) | Medium | Kahn's topological sort, recording the order courses are taken |
+| 695 | [Max Area of Island](graphs/lc0695_max_area_of_island.py) | Medium | DFS from every unvisited land cell, counting cells and sinking them so they are not counted twice |
+| 994 | [Rotting Oranges](graphs/lc0994_rotting_oranges.py) | Medium | Multi-source BFS starting from every rotten orange at once |
+
+### Dynamic Programming (5)
+
+| # | Problem | Difficulty | Approach |
+|---|---------|------------|----------|
+| 62 | [Unique Paths](dp/lc0062_unique_paths.py) | Medium | DP row by row. Paths to a cell = paths from above + paths from the left |
+| 198 | [House Robber](dp/lc0198_house_robber.py) | Medium | DP. At each house, either skip it or rob it plus the best from two houses back |
+| 213 | [House Robber II](dp/lc0213_house_robber_ii.py) | Medium | Houses form a circle, so the first and last cannot both be robbed: solve House Robber without the |
+| 322 | [Coin Change](dp/lc0322_coin_change.py) | Medium | Bottom-up DP. dp[a] is the fewest coins for amount a, trying each coin as the last one |
+| 1143 | [Longest Common Subsequence](dp/lc1143_longest_common_subsequence.py) | Medium | 2-D DP. Matching characters extend the diagonal |
+
+## More LeetCode
 
 | # | Problem | Technique | Time |
 |---|---------|-----------|------|
